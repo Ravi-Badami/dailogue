@@ -15,6 +15,7 @@ import Conversations from './models/Conversation.js';
 import Messages from './models/Messages.js';
 // Importing the 'socket.io' library
 import { Server as SocketIOServer } from 'socket.io';
+import mongoose from 'mongoose';
 
 // Creating a new instance of SocketIOServer
 const io = new SocketIOServer();
@@ -25,6 +26,10 @@ io.listen(8000, {
     origin: 'http://localhost:5173/',
   },
 });
+
+mongoose.connect(
+  'mongodb+srv://code4662:XYc9qOLAHawk7Oo2@cluster0.kujncfw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0'
+);
 
 let users = [];
 io.on('connection', (socket) => {
