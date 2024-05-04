@@ -5,12 +5,36 @@ import { useNavigate } from 'react-router-dom';
 
 const Form = ({ isSignInPage = false }) => {
   const [data, setData] = useState({
-    ...(!isSignInPage && { fullname: '' }),
+    ...(!isSignInPage && { fullName: '' }),
     email: '',
     password: '',
   });
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    console.log('data :>>', data);
+    e.preventDefault();
+    const res = await fetch(`http://localhost:8080/api/${isSignInPage ? 'login' : 'register'}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (res.status === 400) {
+      alert('Invalid credentials');
+    } else {
+      const resData = await res.json();
+      if (resData.token) {
+        localStorage.setItem('user:token', resData.token);
+        localStorage.setItem('user:detail', JSON.stringify(resData.user));
+        navigate('/');
+      }
+    }
+  };
+
   return (
     <div className='bg-white    md:w-[600px] md:h-[600px] shadow-lg rounded-lg flex flex-col justify-center items-center'>
       <div className='text-4xl font-extrabold'>Welcome {isSignInPage && 'back'} </div>
@@ -19,15 +43,15 @@ const Form = ({ isSignInPage = false }) => {
       </div>
 
       <div className='w-72'>
-        <form onSubmit={() => console.log('Submitted')}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           {!isSignInPage && (
             <Input
               label='Full Name'
               name='name'
               placeholder='Enter your Full name'
               className='mb-6'
-              value={data.fullname}
-              onChange={(e) => setData({ ...data, fullname: e.target.value })}
+              value={data.fullName}
+              onChange={(e) => setData({ ...data, fullName: e.target.value })}
             />
           )}
           <Input
