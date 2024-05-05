@@ -23,7 +23,7 @@ const io = new SocketIOServer();
 // Setting up the socket server on port 8080
 io.listen(8000, {
   cors: {
-    origin: 'http://localhost:5173/',
+    origin: process.env.CLIENT_URL || 'http://localhost:5173/',
   },
 });
 
@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
   // io.emit('getUsers', socket.userId);
 });
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
