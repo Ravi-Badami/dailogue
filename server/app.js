@@ -27,10 +27,6 @@ io.listen(8000, {
   },
 });
 
-mongoose.connect(
-  'mongodb+srv://code4662:XYc9qOLAHawk7Oo2@cluster0.kujncfw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0'
-);
-
 let users = [];
 io.on('connection', (socket) => {
   console.log('User conncted', socket.id);
