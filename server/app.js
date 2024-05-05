@@ -21,11 +21,11 @@ import mongoose from 'mongoose';
 const io = new SocketIOServer();
 
 // Setting up the socket server on port 8080
-io.listen(8000, {
-  cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173/',
-  },
-});
+// io.listen(8000, {
+//   cors: {
+//     origin: process.env.CLIENT_URL || 'http://localhost:5173/',
+//   },
+// });
 
 let users = [];
 io.on('connection', (socket) => {
