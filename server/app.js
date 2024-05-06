@@ -22,9 +22,8 @@ import mongoose from 'mongoose';
 const io = new SocketIOServer();
 
 // Setting up the socket server on port 8080
-const server = http.createServer(app); // Create server instance
-
-io.listen(server, {
+const server = http.createServer(app);
+io.attach(server, {
   cors: {
     origin: process.env.CLIENT_URL || 'https://dailogue.vercel.app/',
   },
