@@ -15,13 +15,16 @@ const Form = ({ isSignInPage = false }) => {
   const handleSubmit = async (e) => {
     console.log('data :>>', data);
     e.preventDefault();
-    const res = await fetch(`http://localhost:8080/api/${isSignInPage ? 'login' : 'register'}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    const res = await fetch(
+      `https://dailogue.onrender.com/api/${isSignInPage ? 'login' : 'register'}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     if (res.status === 400) {
       alert('Invalid credentials');
