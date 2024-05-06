@@ -3,6 +3,7 @@ const app = express();
 
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import http from 'http';
 
 import cors from 'cors';
 //imports
@@ -21,7 +22,9 @@ import mongoose from 'mongoose';
 const io = new SocketIOServer();
 
 // Setting up the socket server on port 8080
-io.listen(8000, {
+const server = http.createServer(app); // Create server instance
+
+io.listen(server, {
   cors: {
     origin: process.env.CLIENT_URL || 'https://dailogue.vercel.app/',
   },
@@ -255,6 +258,6 @@ app.get('/api/users/:userId', async (req, res) => {
     console.log('error', error);
   }
 });
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('listening to the port' + port);
 });

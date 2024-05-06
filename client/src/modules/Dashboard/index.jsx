@@ -15,7 +15,7 @@ const Dashboard = () => {
   console.log('user:>>', user);
 
   useEffect(() => {
-    setSocket(io('http://localhost:8000'));
+    setSocket(io('https://dailogue.onrender.com'));
   }, []);
 
   useEffect(() => {
