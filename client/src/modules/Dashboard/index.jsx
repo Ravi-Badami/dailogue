@@ -29,7 +29,7 @@ const Dashboard = () => {
         messages: [...prev.messages, { user: data.user, message: data.message }],
       }));
     });
-  }, [socket]);
+  }, [socket, message]);
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem('user:detail'));
     const fetchConversations = async () => {
@@ -91,17 +91,6 @@ const Dashboard = () => {
       conversationId: messages?.conversationId,
     });
 
-    const receiverId = messages?.receiver?.receiverId;
-    if (receiverId) {
-      const res = await fetch(`https://dailogue.onrender.com/api/conversations/${receiverId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const resData = await res.json();
-      setConversations(resData);
-    }
     const res = await fetch(`https://dailogue.onrender.com/api/message`, {
       method: 'POST',
       headers: {
