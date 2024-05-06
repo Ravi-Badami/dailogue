@@ -102,7 +102,6 @@ const Dashboard = () => {
       const resData = await res.json();
       setConversations(resData);
     }
-
     const res = await fetch(`https://dailogue.onrender.com/api/message`, {
       method: 'POST',
       headers: {
