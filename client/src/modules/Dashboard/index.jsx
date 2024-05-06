@@ -46,7 +46,7 @@ const Dashboard = () => {
       setConversations(resData);
     };
     fetchConversations();
-  }, []);
+  }, [message, socket]);
 
   useEffect(() => {
     messageRef?.current?.scrollIntoView({ behavior: 'smooth' });
@@ -90,6 +90,19 @@ const Dashboard = () => {
       message,
       conversationId: messages?.conversationId,
     });
+
+    const receiverId = messages?.receiver?.receiverId;
+    if (receiverId) {
+      const res = await fetch(`https://dailogue.onrender.com/api/conversations/${receiverId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const resData = await res.json();
+      setConversations(resData);
+    }
+
     const res = await fetch(`https://dailogue.onrender.com/api/message`, {
       method: 'POST',
       headers: {
