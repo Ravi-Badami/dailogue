@@ -198,7 +198,7 @@ const Dashboard = () => {
           </div>
         </div>
         {messages?.receiver?.fullName && (
-          <div className='md:p-14 bg-red-600 w-full md:flex md:items-center'>
+          <div className='md:p-14  w-full md:flex md:items-center'>
             <Input
               placeholder='Type a message'
               value={message}
@@ -206,15 +206,11 @@ const Dashboard = () => {
               inputClassname=' md:p-4  p-2 border-0 shadow-lg rounded-full focus:ring-0 focus:border-0 outline-none'
               className='w-full  p-2'></Input>
             <div
-              className={`md:ml-4 md:p-4  border border-black cursor-pointer bg-light rounded-full ${
+              className={`md:ml-4 md:p-4   cursor-pointer bg-light rounded-full ${
                 !message && 'pointer-events-none flex items-center  '
               } hover:bg-gray-200`}
               onClick={() => sendMessage()}>
-              <img
-                src='https://www.svgrepo.com/show/533306/send.svg'
-                className='h-8 w-8 border border-black'
-                alt=''
-              />
+              <img src='https://www.svgrepo.com/show/533306/send.svg' className='h-8 w-8 ' alt='' />
             </div>
           </div>
         )}
