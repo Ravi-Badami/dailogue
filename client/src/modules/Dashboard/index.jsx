@@ -110,18 +110,24 @@ const Dashboard = () => {
 
   return (
     <div className='w-screen flex bg-blue-100'>
-      <div className='w-[25%] h-screen bg-secondary '>
+      <div className='w-[29%] h-screen bg-secondary  flex justify-start itemce flex-col'>
         <div className='flex justify-center items-center py-8 border-b border-b-gray-600'>
           <div className='border  p-[2px] rounded-full'>
             <img src={Avatar} alt='' width={75} height={75} />
           </div>
-          <div className='ml-8'>
-            <h3 className='text-2xl'>{user?.fullName}</h3>
-            <p className='text-lg font-light'>My Account</p>
+          <div className='md:ml-8'>
+            <h3 className='md:text-2xl'>{user?.fullName}</h3>
+            <p className='md:text-lg font-light text-xs flex items-center gap-1 justify-center '>
+              <span>My </span>Account
+            </p>
           </div>
         </div>
         <hr />
-        <div className=''>Messages</div>
+
+        <div className=' md:text-3xl w-full font-bold bg-gray-300 flex items-center justify-center p-4'>
+          <span>Messages</span>
+        </div>
+
         <div className=''>
           {conversations.length > 0 ? (
             conversations.map(({ conversationId, user }) => {
@@ -133,9 +139,9 @@ const Dashboard = () => {
                   <div className='border border-primary p-[2px] rounded-full'>
                     <img src={Avatar} alt='' width={50} height={50} />
                   </div>
-                  <div className='ml-8'>
-                    <h3 className='text-2xl'>{user.fullName}</h3>
-                    <p className='text-lg font-light'>{user.email}</p>
+                  <div className='md:ml-8 ml-20'>
+                    <h3 className='md:text-2xl'>{user.fullName}</h3>
+                    <p className='md:text-lg font-light'>{user.email}</p>
                   </div>
                 </div>
               );
@@ -152,16 +158,16 @@ const Dashboard = () => {
               <img src={Avatar} width={60} className='cursor-pointer' height={60} alt='' />
             </div>
 
-            <div className='ml-6 mr-auto'>
-              <h3 className='text-lg'>{messages?.receiver?.fullName}</h3>
-              <p className='text-sm font-light text-gray-600'>{messages?.receiver?.email}</p>
+            <div className='ml-6 mr-auto py-10'>
+              <h3 className='md:text-lg'>{messages?.receiver?.fullName}</h3>
+              <p className='md:text-sm font-light text-gray-600'>{messages?.receiver?.email}</p>
             </div>
             <div className=' cursor-pointer'>
-              <img
+              {/* <img
                 src='https://www.svgrepo.com/show/521542/call-out.svg'
                 className='h-10 w-10'
                 alt=''
-              />
+              /> */}
             </div>
           </div>
         )}
@@ -207,7 +213,7 @@ const Dashboard = () => {
               <img src='https://www.svgrepo.com/show/533306/send.svg' className='h-8 w-8' alt='' />
             </div>
             <div className=''>
-              <img src='https://www.svgrepo.com/show/509200/plus.svg' className='h-8 w-8' alt='' />
+              {/* <img src='https://www.svgrepo.com/show/509200/plus.svg' className='h-8 w-8' alt='' /> */}
             </div>
           </div>
         )}
@@ -225,9 +231,9 @@ const Dashboard = () => {
                   <div className='border border-primary p-[2px] rounded-full'>
                     <img src={Avatar} alt='' width={50} height={50} />
                   </div>
-                  <div className='ml-8'>
-                    <h3 className='text-2xl'>{user.fullName}</h3>
-                    <p className='text-lg font-light'>{user.email}</p>
+                  <div className='md:ml-8 ml-20'>
+                    <h3 className='md:text-2xl text-base'>{user.fullName}</h3>
+                    <p className='md:text-lg font-light'>{user.email}</p>
                   </div>
                 </div>
               );
