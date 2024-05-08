@@ -198,22 +198,23 @@ const Dashboard = () => {
           </div>
         </div>
         {messages?.receiver?.fullName && (
-          <div className='p-14 w-full flex items-center'>
+          <div className='md:p-14 bg-red-600 w-full md:flex md:items-center'>
             <Input
               placeholder='Type a message'
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              inputClassname=' p-4  border-0 shadow-lg rounded-full focus:ring-0 focus:border-0 outline-none'
-              className='w-full'></Input>
+              inputClassname=' md:p-4  p-2 border-0 shadow-lg rounded-full focus:ring-0 focus:border-0 outline-none'
+              className='w-full  p-2'></Input>
             <div
-              className={`ml-4 p-4 cursor-pointer bg-light rounded-full ${
-                !message && 'pointer-events-none'
+              className={`md:ml-4 md:p-4  border border-black cursor-pointer bg-light rounded-full ${
+                !message && 'pointer-events-none flex items-center  '
               } hover:bg-gray-200`}
               onClick={() => sendMessage()}>
-              <img src='https://www.svgrepo.com/show/533306/send.svg' className='h-8 w-8' alt='' />
-            </div>
-            <div className=''>
-              {/* <img src='https://www.svgrepo.com/show/509200/plus.svg' className='h-8 w-8' alt='' /> */}
+              <img
+                src='https://www.svgrepo.com/show/533306/send.svg'
+                className='h-8 w-8 border border-black'
+                alt=''
+              />
             </div>
           </div>
         )}
