@@ -29,7 +29,11 @@ const Dashboard = () => {
         messages: [...prev.messages, { user: data.user, message: data.message }],
       }));
     });
-  }, [socket, message]);
+  }, [socket]);
+
+  useEffect(() => {
+    messageRef?.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages?.messages]);
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem('user:detail'));
     const fetchConversations = async () => {
@@ -46,12 +50,11 @@ const Dashboard = () => {
       setConversations(resData);
     };
     fetchConversations();
-  }, [message, socket]);
+  }, [message]);
 
   useEffect(() => {
     messageRef?.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages?.messages]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await fetch(`https://dailogue.onrender.com/api/users/${user?.id}`, {
@@ -103,7 +106,7 @@ const Dashboard = () => {
         receiverId: messages?.receiver?.receiverId,
       }),
     });
-    setMessage('');
+    fetchMessages();
   };
 
   return (
