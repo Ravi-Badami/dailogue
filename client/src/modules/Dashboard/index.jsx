@@ -106,7 +106,6 @@ const Dashboard = () => {
         receiverId: messages?.receiver?.receiverId,
       }),
     });
-    fetchMessages();
   };
 
   return (
